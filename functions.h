@@ -6,31 +6,27 @@
 #include <errno.h>
 #include <stdlib.h>
 #include "compatibility.h"
+#include "cplusplus.h"
 
 
 #ifndef LEMONROCK_C_FUNCTIONS_H
 	
 	#define LEMONROCK_C_FUNCTIONS_H
 	
-	#ifdef __cplusplus
-		extern "C" {
-	#endif
-			
-			
-			
-			NoReturn Cold NoInline void lemonrock_c_exitWithError(const int error_number, const char * message)
-			{
-				errno = error_number;
-				perror(message);
-				exit(EXIT_FAILURE);
-				__builtin_unreachable();
-			}
-			
-			
-			
-	#ifdef __cplusplus
-		}
-	#endif
+	C_START	
+	
+	
+	NoReturn Cold NoInline void lemonrock_c_exitWithError(const int error_number, const char * message)
+	{
+		errno = error_number;
+		perror(message);
+		exit(EXIT_FAILURE);
+		__builtin_unreachable();
+	}
+		
+		
+		
+	C_END
 	
 #endif
 

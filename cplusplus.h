@@ -2,27 +2,16 @@
 // Copyright © 2016 The developers of threading-support. See the COPYRIGHT file in the top-level directory of this distribution and at https://raw.githubusercontent.com/lemonrock/threading-support/master/COPYRIGHT.
 
 
-#include "cplusplus.h"
-
-
-#ifndef LEMONROCK_C_MACROS_H
+#ifndef LEMONROCK_C_CPLUSPLUS_H
 	
-	#define LEMONROCK_C_MACROS_H
+	#define LEMONROCK_C_CPLUSPLUS_H
 	
-	C_START
-	
-	
-	
-	#ifndef likely
-		#define likely(x) __builtin_expect(!!(x), 1)
+	#ifdef __cplusplus
+		#define C_START extern "C" {
+		#define C_END }
+	#else
+		#define C_START
+		#define C_END
 	#endif
 
-	#ifndef unlikely
-		#define unlikely(x) __builtin_expect(!!(x), 0)
-	#endif
-	
-	
-	
-	C_END
-	
 #endif
