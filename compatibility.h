@@ -30,8 +30,23 @@
 	#if defined(__clang__)
 		#define IsCompilerClang
 	#endif
+
 	
-		
+	#if defined(__x86_64__) || defined(__x86_64) || defined(__amd64__) || defined(__amd64)
+		#define IsAmd64
+		#if defined(__LP64__) || defined(_LP64)
+			#define IsLp64
+			#define IsAmd64AndLp64
+		#elif defined(__ILP32__) || defined(_ILP32)
+			#define IsIlp32
+			#define IsAmd64AndIlp32
+		#endif
+	#elif define(_M_X64) || defined(_M_AMD64)
+		#define IsAmd64
+		#define IsAmd64AndLlp64
+	#endif
+	
+	
 	#ifndef __STDC__
 		#define const
 		#define volatile
@@ -129,6 +144,20 @@
 		#define Cold
 	#endif
 
+
+	#ifdef IsCompilerGcc4OrLaterCompatible
+		#define Pure __attribute__ ((pure))
+	#else
+		#define Pure
+	#endif
+
+
+	#ifdef IsCompilerGcc4OrLaterCompatible
+		#define Target __attribute__ ((target(x)))
+	#else
+		#define Target
+	#endif
+	
 
 	#if !defined(IsCompilerGcc4OrLaterCompatible)
 		#define __builtin_expect(expr, expected) (expr)
