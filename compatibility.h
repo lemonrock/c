@@ -51,7 +51,7 @@
 			#define IsIlp32
 			#define IsAmd64AndIlp32
 		#endif
-	#elif define(_M_X64) || defined(_M_AMD64)
+	#elif defined(_M_X64) || defined(_M_AMD64)
 		#define IsAmd64
 		#define IsAmd64AndLlp64
 	#endif
